@@ -1,6 +1,5 @@
 import axios from "axios";
 import useGetUsers from "./useGetUsers";
-import { useEffect } from "react";
 
 
 export default function useDelete() {

@@ -12,7 +12,6 @@ export default function useGetUsers() {
       .then(res => getUser(res.data))
     setIsLoading(false)
   }
-
   useEffect(() => {
     getUsers()
   }, [])

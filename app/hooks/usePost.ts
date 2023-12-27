@@ -1,41 +1,34 @@
-import { useState } from "react";
 import { IFormInput } from "../interfaces/interfaces";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
 
 export default function usePost() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [description, setDescription] = useState("");
-  const [number, setNumber] = useState("");
   const router = useRouter();
-  const senFormData = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const response = await axios.post<IFormInput>(
-      "https://63a5c4fcf8f3f6d4abff62b9.mockapi.io/api/v1/CRUD",
-      {
-        name: name,
-        email: email,
-        password: password,
-        number: number,
-        description: description,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormInput>();
 
-    router.push("/");
+  const onSubmit = (data: any) => {
+    axios
+      .post("https://63a5c4fcf8f3f6d4abff62b9.mockapi.io/api/v1/CRUD", data, {
+        headers: { "Content-Type": "application/json" },
+      })
+      .then((response) => {
+        if (response.data) {
+          router.push("/");
+        }
+      })
+      .catch((error) => {
+        console.log(error.data);
+      });
   };
+
   return {
-    senFormData,
-    setName,
-    setEmail,
-    setDescription,
-    setPassword,
-    setNumber,
+    handleSubmit,
+    register,
+    onSubmit,
   };
 }

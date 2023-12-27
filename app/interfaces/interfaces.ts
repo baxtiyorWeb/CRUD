@@ -3,7 +3,7 @@ export interface IFormInput {
   email: string;
   number: number;
   password: string;
-  description: number;
+  description: string;
 }
 
 export interface IUsers {
@@ -12,7 +12,7 @@ export interface IUsers {
   email: string;
   number: number;
   password: string;
-  description: number;
+  description: string;
 }
 export interface IUsersEdit {
   name: string;

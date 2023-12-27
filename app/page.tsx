@@ -29,6 +29,9 @@ export default function Home() {
       </div>
 
       <div>
+        <div className="w-full flex justify-end mt-3 mb-3">
+          <input type="text" onChange={(e) => setSearch(e.target.value)} placeholder="search users" className="p-3 w-[300px] mr-5" />
+        </div>
 
         {isLoading ? <h2 className="text text-center mt-5">loading ...</h2> : user.length === 0 ? <h2 className="text text-center mt-5">empty data</h2> : <table id="table" className="table-hover table ">
 

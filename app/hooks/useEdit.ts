@@ -12,7 +12,7 @@ export default function useEdit() {
   const params = useParams();
   const router = useRouter();
   const editForGetUser = async () => {
-    const response = await axios
+    await axios
       .get<IUsersEdit>(
         `https://63a5c4fcf8f3f6d4abff62b9.mockapi.io/api/v1/CRUD/${params.id}`
       )
